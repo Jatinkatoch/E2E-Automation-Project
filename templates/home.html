@@ -1,0 +1,174 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+Home
+{% endblock %}
+
+
+
+{% block content %}
+
+
+<section class="hero">
+
+<h1>
+Welcome To TechStore
+</h1>
+
+<p>
+Premium Technology Products
+</p>
+
+</section>
+
+
+
+<div class="container mt-5">
+
+
+
+<input 
+id="search"
+class="form-control mb-4"
+placeholder="Search products...">
+
+
+
+<div class="row mb-4">
+
+
+<div class="col">
+
+<button class="btn btn-dark filter"
+data-category="all">
+
+All
+
+</button>
+
+
+<button class="btn btn-primary filter"
+data-category="Laptop">
+
+Laptops
+
+</button>
+
+
+<button class="btn btn-success filter"
+data-category="Accessories">
+
+Accessories
+
+</button>
+
+
+</div>
+
+
+</div>
+
+
+
+
+
+<div class="row">
+
+
+{% for p in products %}
+
+
+
+<div class="col-md-4 product mb-4"
+data-category="{{p.category}}">
+
+
+
+<div class="card shadow h-100">
+
+
+
+<img src="{{p.image}}"
+class="card-img-top">
+
+
+
+<div class="card-body">
+
+
+
+<h4>
+
+{{p.name}}
+
+</h4>
+
+
+
+<p>
+
+{{p.description}}
+
+</p>
+
+
+
+<h5>
+
+₹{{p.price}}
+
+</h5>
+
+
+
+<p>
+
+⭐ {{p.rating}}
+
+</p>
+
+
+
+
+<a href="/product/{{p.id}}"
+class="btn btn-primary">
+
+View Details
+
+</a>
+
+
+
+<a href="/add/{{p.id}}"
+class="btn btn-success">
+
+Add Cart
+
+</a>
+
+
+
+</div>
+
+
+</div>
+
+
+</div>
+
+
+
+{% endfor %}
+
+
+
+</div>
+
+
+
+</div>
+
+
+
+{% endblock %}

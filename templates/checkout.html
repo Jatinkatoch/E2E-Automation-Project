@@ -1,0 +1,221 @@
+{% extends "base.html" %}
+
+
+{% block title %}
+
+Cart
+
+{% endblock %}
+
+
+
+{% block content %}
+
+
+
+<div class="container mt-5">
+
+
+
+<h1 class="mb-4">
+
+🛒 Shopping Cart
+
+</h1>
+
+
+
+{% if cart %}
+
+
+
+<div class="table-responsive">
+
+
+<table class="table table-bordered shadow">
+
+
+
+<tr>
+
+<th>
+Product
+</th>
+
+
+<th>
+Price
+</th>
+
+
+<th>
+Quantity
+</th>
+
+
+<th>
+Action
+</th>
+
+
+</tr>
+
+
+
+{% for item in cart %}
+
+
+
+<tr>
+
+
+<td>
+
+
+<img src="{{item.image}}"
+width="80"
+height="60">
+
+
+{{item.name}}
+
+
+</td>
+
+
+
+
+<td>
+
+₹{{item.price}}
+
+</td>
+
+
+
+
+<td>
+
+
+<form method="POST"
+action="/update/{{item.id}}">
+
+
+<button
+name="action"
+value="decrease"
+class="btn btn-danger btn-sm">
+
+-
+
+</button>
+
+
+
+<span class="mx-3">
+
+{{item.quantity}}
+
+</span>
+
+
+
+<button
+name="action"
+value="increase"
+class="btn btn-success btn-sm">
+
++
+
+</button>
+
+
+
+</form>
+
+
+</td>
+
+
+
+
+<td>
+
+
+<a href="/remove/{{item.id}}"
+class="btn btn-danger">
+
+Remove
+
+</a>
+
+
+</td>
+
+
+
+</tr>
+
+
+
+{% endfor %}
+
+
+
+</table>
+
+
+</div>
+
+
+
+
+<h2>
+
+Total: ₹{{total}}
+
+</h2>
+
+
+
+<a href="/order"
+class="btn btn-primary btn-lg">
+
+Proceed Checkout
+
+</a>
+
+
+
+
+{% else %}
+
+
+
+<div class="alert alert-info">
+
+Your cart is empty
+
+</div>
+
+
+
+<a href="/"
+class="btn btn-primary">
+
+Continue Shopping
+
+</a>
+
+
+
+{% endif %}
+
+
+
+
+</div>
+
+
+
+{% endblock %}
